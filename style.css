@@ -13,7 +13,7 @@
 
   --ff-base: "Inter", sans-serif;
 
-  --fs-400: 1rem;
+  --fs-400: 0.875rem; /* 14px */
   --fs-600: 1.5rem;
 
   --fw-regular: 400;
@@ -77,12 +77,57 @@ a{
   overflow: hidden;
 }
 
-/* ----------- LAYOUT ----------- */
+.button{
+  cursor: pointer;
+  padding: 1em;
+  border-radius: .5em;
+  background: var(--clr-grey-700);
+  transition: background-color .15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.button span{
+  position: relative;
+}
+
+.button::before{
+  --speed: .3s;
+
+  content: "";
+  position: absolute;
+  background: var(--clr-green-400);
+  inset: 0;
+  transform: translateX(-100%);
+  transition: 
+    transform var(--speed) ease-out,
+    color var(--speed) ease;
+}
+
+.button:hover::before{
+  transform: translateX(0%);
+}
+
+.button:hover{
+  color: var(--clr-grey-900);
+}
+
+/* .button:hover{
+  color: var(--clr-grey-900);
+} */
+/* .button::before:hover{
+  background: red;
+} */
+
+
+
+
+/* ----------- PROFILE CARD STYLES ----------- */
 
 body{
   color: var(--clr-white-900);
   background: var(--clr-grey-900);
-  font-style: var(--fs-400);
+  font-size: var(--fs-400);
   font-family: var(--ff-base);
   font-weight: var(--fw-regular);
 }
@@ -95,14 +140,14 @@ body{
 .profile__card{
   background: var(--clr-grey-800);
   width: min(85%, 24rem);
-  padding: 1.5rem;
+  padding: 2.5rem;
   border-radius: 1rem;
   text-align: center;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .profile-pic{
-  width: 5rem;
+  width: 5.5rem;
   aspect-ratio: 1/1;
   border-radius: 50%;
   margin: 0 auto;
@@ -134,15 +179,11 @@ body{
 
 .profile__link{
   display: block;
-  padding-block: 1em;
-  border-radius: .5em;
-  background: var(--clr-grey-700);
-  transition: background-color .15s ease;
   outline: none;
 }
 
-.profile__link:hover,
+/* .profile__link:hover,
 .profile__link:focus-visible{
   background: var(--clr-green-400);
   color: var(--clr-grey-900);
-}
+} */
