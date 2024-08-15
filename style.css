@@ -6,7 +6,11 @@
 
 :root{
   --clr-green-400: hsl(75, 94%, 57%);
-  --clr-white-900: hsl(0, 0%, 100%);
+  --clr-green-600: hsl(213, 67%, 45%);
+  --clr-green-600: hsl(142, 100%, 27%);
+  --clr-white-100: hsl(0, 0%, 100%);
+  --clr-white-200: hsl(0, 0%, 96%);
+  --clr-white-300: hsl(0, 0%, 90%);
   --clr-grey-700: hsl(0, 0%, 20%);
   --clr-grey-800: hsl(0, 0%, 12%);
   --clr-grey-900: hsl(0, 0%, 8%);
@@ -19,6 +23,26 @@
   --fw-regular: 400;
   --fw-semi-bold: 600;
   --fw-bold: 700;
+
+  /* Default color theme */
+
+  --clr-accent: var(--clr-green-600);
+  --clr-font: var(--clr-grey-900);
+  --clr-font-hover: var(--clr-white-100);
+  --clr-background-100: var(--clr-white-100);
+  --clr-background-200: var(--clr-white-200);
+  --clr-background-300: var(--clr-white-300);
+}
+
+/* ----------- Dark mode theme ----------- */
+
+.dark-mode{
+  --clr-accent: var(--clr-green-400);
+  --clr-font: var(--clr-white-300);
+  --clr-font-hover: var(--clr-grey-900);
+  --clr-background-100: var(--clr-grey-700);
+  --clr-background-200: var(--clr-grey-800);
+  --clr-background-300: var(--clr-grey-900);
 }
 
 
@@ -81,7 +105,7 @@ a{
   cursor: pointer;
   padding: 1em;
   border-radius: .5em;
-  background: var(--clr-grey-700);
+  background: var(--clr-background-100);
   transition: background-color .15s ease;
   position: relative;
   overflow: hidden;
@@ -89,37 +113,39 @@ a{
 
 .button span{
   position: relative;
+  transition: color var(--speed) ease;
 }
 
 .button::before{
-  --speed: .3s;
+  --speed: .25s;
 
   content: "";
   position: absolute;
-  background: var(--clr-green-400);
+  background: var(--clr-accent);
   inset: 0;
   height: 200%;
   transform: translateY(-100%);
   border-radius: 0 0 50% 50%;
   transition: 
-    transform var(--speed) ease-out,
-    color var(--speed) ease;
+    transform var(--speed) ease-out;
 }
 
-.button:hover::before{
+.button:hover,
+.button:focus-visible{
+  color: var(--clr-font-hover);
+}
+
+.button:hover::before,
+.button:focus-visible::before{
   transform: translateX(0%);
-}
-
-.button:hover{
-  color: var(--clr-grey-900);
 }
 
 
 /* ----------- PROFILE CARD STYLES ----------- */
 
 body{
-  color: var(--clr-white-900);
-  background: var(--clr-grey-900);
+  color: var(--clr-font);
+  background: var(--clr-background-300);
   font-size: var(--fs-400);
   font-family: var(--ff-base);
   font-weight: var(--fw-regular);
@@ -131,7 +157,7 @@ body{
 }
 
 .profile__card{
-  background: var(--clr-grey-800);
+  background: var(--clr-background-200);
   width: min(85%, 24rem);
   padding: 2.5rem;
   border-radius: 1rem;
@@ -157,7 +183,7 @@ body{
 }
 
 .profile__location{
-  color: var(--clr-green-400);
+  color: var(--clr-accent);
   font-weight: var(--fw-semi-bold);
 }
 
@@ -174,9 +200,3 @@ body{
   display: block;
   outline: none;
 }
-
-/* .profile__link:hover,
-.profile__link:focus-visible{
-  background: var(--clr-green-400);
-  color: var(--clr-grey-900);
-} */
